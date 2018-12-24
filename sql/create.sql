@@ -18,11 +18,11 @@ USE `org_klub` ;
 -- Table `org_klub`.`Osoblje`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `org_klub`.`Osoblje` (
-  `id_osoblja` INT NOT NULL,
+  `id_osoblja` INT NOT NULL AUTO_INCREMENT,
   `ime` VARCHAR(45) NOT NULL,
   `prezime` VARCHAR(45) NOT NULL,
   `godina_rodjenja` INT NOT NULL,
-  `plata` INT NOT NULL,
+  `plata` INT UNSIGNED NOT NULL,
   `nacionalnost` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_osoblja`))
 ENGINE = InnoDB;
@@ -64,7 +64,7 @@ ENGINE = InnoDB;
 -- Table `org_klub`.`Predsednik`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `org_klub`.`Predsednik` (
-  `id_predsednika` INT NOT NULL,
+  `id_predsednika` INT NOT NULL AUTO_INCREMENT,
   `ime` VARCHAR(45) NOT NULL,
   `prezime` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_predsednika`))
@@ -75,7 +75,7 @@ ENGINE = InnoDB;
 -- Table `org_klub`.`Stadion`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `org_klub`.`Stadion` (
-  `id_stadiona` INT NOT NULL,
+  `id_stadiona` INT NOT NULL AUTO_INCREMENT,
   `ime_stadiona` VARCHAR(45) NOT NULL,
   `adresa` VARCHAR(45) NOT NULL,
   `kapacitet` INT NOT NULL,
@@ -87,8 +87,8 @@ ENGINE = InnoDB;
 -- Table `org_klub`.`Fudbalski_klub`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `org_klub`.`Fudbalski_klub` (
-  `id_kluba` INT NOT NULL,
-  `ime_kiuba` VARCHAR(45) NOT NULL,
+  `id_kluba` INT NOT NULL AUTO_INCREMENT,
+  `ime_kluba` VARCHAR(45) NOT NULL,
   `godina_osnivanja` YEAR NOT NULL,
   `drzava` VARCHAR(45) NOT NULL,
   `grad` VARCHAR(45) NOT NULL,
@@ -96,8 +96,8 @@ CREATE TABLE IF NOT EXISTS `org_klub`.`Fudbalski_klub` (
   `Stadion_id_stadiona` INT NOT NULL,
   `liga` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_kluba`),
-  INDEX `fk_Fudbalski_klub_Predsednik_idx` (`Predsednik_id_predsednika` ASC) ,
-  INDEX `fk_Fudbalski_klub_Stadion1_idx` (`Stadion_id_stadiona` ASC) ,
+  INDEX `fk_Fudbalski_klub_Predsednik_idx` (`Predsednik_id_predsednika` ASC),
+  INDEX `fk_Fudbalski_klub_Stadion1_idx` (`Stadion_id_stadiona` ASC),
   CONSTRAINT `fk_Fudbalski_klub_Predsednik`
     FOREIGN KEY (`Predsednik_id_predsednika`)
     REFERENCES `org_klub`.`Predsednik` (`id_predsednika`)
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `org_klub`.`Tim` (
   `vrsta_tima` VARCHAR(45) NOT NULL,
   `Fudbalski_klub_id_kluba` INT NOT NULL,
   PRIMARY KEY (`vrsta_tima`, `Fudbalski_klub_id_kluba`),
-  INDEX `fk_Tim_Fudbalski_klub1_idx` (`Fudbalski_klub_id_kluba` ASC) ,
+  INDEX `fk_Tim_Fudbalski_klub1_idx` (`Fudbalski_klub_id_kluba` ASC),
   CONSTRAINT `fk_Tim_Fudbalski_klub1`
     FOREIGN KEY (`Fudbalski_klub_id_kluba`)
     REFERENCES `org_klub`.`Fudbalski_klub` (`id_kluba`)
@@ -131,15 +131,14 @@ ENGINE = InnoDB;
 -- Table `org_klub`.`Nastupa`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `org_klub`.`Nastupa` (
-  `godina_debitovanja` YEAR NOT NULL,
-  `poslednja_godina` YEAR,
-  `broj_nastupa` INT NOT NULL,
+  `sezona` YEAR NOT NULL,
+  `broj_nastupa` INT UNSIGNED NOT NULL,
+  `broj_dresa` INT UNSIGNED NOT NULL,
   `Fudbaler_Osoblje_id_osoblja` INT NOT NULL,
   `Tim_vrsta_tima` VARCHAR(45) NOT NULL,
   `Tim_Fudbalski_klub_id_kluba` INT NOT NULL,
-  `broj_dresa` INT NOT NULL,
   PRIMARY KEY (`Fudbaler_Osoblje_id_osoblja`, `Tim_vrsta_tima`, `Tim_Fudbalski_klub_id_kluba`),
-  INDEX `fk_Nastupao_Tim1_idx` (`Tim_vrsta_tima` ASC, `Tim_Fudbalski_klub_id_kluba` ASC) ,
+  INDEX `fk_Nastupao_Tim1_idx` (`Tim_vrsta_tima` ASC, `Tim_Fudbalski_klub_id_kluba` ASC),
   CONSTRAINT `fk_Nastupao_Fudbaler1`
     FOREIGN KEY (`Fudbaler_Osoblje_id_osoblja`)
     REFERENCES `org_klub`.`Fudbaler` (`Osoblje_id_osoblja`)
@@ -157,13 +156,12 @@ ENGINE = InnoDB;
 -- Table `org_klub`.`Trenira`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `org_klub`.`Trenira` (
-  `godina_debitovanja` YEAR NOT NULL,
-  `poslednja_godina` YEAR,
+  `sezona` YEAR NOT NULL,
   `Menadzer_Osoblje_id_osoblja` INT NOT NULL,
   `Tim_vrsta_tima` VARCHAR(45) NOT NULL,
   `Tim_Fudbalski_klub_id_kluba` INT NOT NULL,
   PRIMARY KEY (`Menadzer_Osoblje_id_osoblja`, `Tim_vrsta_tima`, `Tim_Fudbalski_klub_id_kluba`),
-  INDEX `fk_Trenira_Tim1_idx` (`Tim_vrsta_tima` ASC, `Tim_Fudbalski_klub_id_kluba` ASC) ,
+  INDEX `fk_Trenira_Tim1_idx` (`Tim_vrsta_tima` ASC, `Tim_Fudbalski_klub_id_kluba` ASC),
   CONSTRAINT `fk_Trenira_Menadzer1`
     FOREIGN KEY (`Menadzer_Osoblje_id_osoblja`)
     REFERENCES `org_klub`.`Menadzer` (`Osoblje_id_osoblja`)
@@ -184,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `org_klub`.`Filijala` (
   `Fudbalski_klub_id_kluba_senior` INT NOT NULL,
   `Fudbalski_klub_id_kluba_filijala` INT NOT NULL,
   PRIMARY KEY (`Fudbalski_klub_id_kluba_senior`, `Fudbalski_klub_id_kluba_filijala`),
-  INDEX `fk_Filijala_Fudbalski_klub2_idx` (`Fudbalski_klub_id_kluba_filijala` ASC) ,
+  INDEX `fk_Filijala_Fudbalski_klub2_idx` (`Fudbalski_klub_id_kluba_filijala` ASC),
   CONSTRAINT `fk_Filijala_Fudbalski_klub1`
     FOREIGN KEY (`Fudbalski_klub_id_kluba_senior`)
     REFERENCES `org_klub`.`Fudbalski_klub` (`id_kluba`)

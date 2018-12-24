@@ -1,6 +1,6 @@
 DIR	= Organizacija_fudbalskog_kluba_ProjBP
 CC = gcc
-PROGS	= src/main.c
+PROGS	= src/main.c src/db_functions.c
 OUTPUT = org_fudbalskog_kluba
 CFLAGS	= -g -Wall `mysql_config --cflags --libs`
 
@@ -13,6 +13,12 @@ progs:
 
 create:
 	mysql -u jovan < sql/create.sql
+
+trigger:
+	mysql -u jovan < sql/triggers.sql
+
+insert:
+	mysql -u jovan < sql/insert.sql
 	
 beauty:
 	-indent $(PROGS)
