@@ -46,7 +46,7 @@ drop trigger if exists bu_Fudbalski_klub $$
 create trigger bu_Fudbalski_klub before update on Fudbalski_klub
 for each row
 begin
-	if(old.liga like new.liga)
+	if(old.liga not like new.liga)
 	then
 		delete from Filijala
 		where (Filijala.Fudbalski_klub_id_kluba_filijala = new.id_kluba
@@ -96,7 +96,7 @@ begin
 			limit 1
 		);
 
-		if(new.broj_dresa > 99)
+		if(new.broj_dresa = 0 || new.broj_dresa > 99)
 		then
 			SIGNAL SQLSTATE '45000' SET message_text = 'Greska: igrac ima maksimalno broj 99!';
 		end if;

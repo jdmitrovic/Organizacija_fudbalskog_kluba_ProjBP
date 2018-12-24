@@ -11,7 +11,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema org_klub
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `org_klub` DEFAULT CHARACTER SET utf8 ;
+drop database if exists org_klub;
+CREATE SCHEMA `org_klub` DEFAULT CHARACTER SET utf8 ;
 USE `org_klub` ;
 
 -- -----------------------------------------------------

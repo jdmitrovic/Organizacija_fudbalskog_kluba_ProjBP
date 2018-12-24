@@ -54,3 +54,36 @@ void sve_filijale(MySqlStruct* s)
 
 	mysql_free_result(s->result);
 }
+
+void menjanje_lige(MySqlStruct* s)
+{
+	size_t bufsize = 128;
+	char* klub = (char*)malloc(bufsize * sizeof(char));
+	char* liga = (char*)malloc(bufsize * sizeof(char));
+	
+	if (liga == NULL || klub == NULL) {
+		printf("Malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
+	printf("Unesite ime kluba:\n");
+	getchar();
+	size_t bytes_read = getline(&klub, &bufsize, stdin);
+	klub[bytes_read-1] = '\0';
+
+	printf("Unesite novu ligu u kojoj klub ucestvuje:\n");
+	bytes_read = getline(&liga, &bufsize, stdin);
+	liga[bytes_read-1] = '\0';
+
+	printf("%s\n%s\n", klub, liga);
+
+	sprintf(s->query, "update Fudbalski_klub "
+					  "set liga = '%s' "
+					  "where ime_kluba like '%s'", liga, klub);
+
+	if(mysql_query(s->connection, s->query) != 0)
+		exit(EXIT_FAILURE);
+
+	free(liga);
+	free(klub);
+}

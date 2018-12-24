@@ -55,3 +55,15 @@ insert into Fudbalski_klub(id_kluba, ime_kluba, godina_osnivanja, drzava, grad, 
 insert into Filijala(Fudbalski_klub_id_kluba_senior, Fudbalski_klub_id_kluba_filijala) values
 (1, 17),
 (3, 18);
+
+insert into Osoblje(id_osoblja, ime, prezime, godina_rodjenja, plata, nacionalnost) values
+(1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
+(2, "Milan", "Borjan", 1987, 13000, "Kanada"),
+(3, "Svetozar", "Markovic", 2000, 4000, "Srbija"),
+(4, "Zlatan", "Sehovic", 2000, 3000, "Srbija");
+-- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
+-- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
+-- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
+-- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
+-- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
+-- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),

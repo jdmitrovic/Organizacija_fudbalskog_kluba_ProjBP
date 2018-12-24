@@ -34,7 +34,7 @@ int main(int argc, char** argv)
 				sve_filijale(&s);	
 				break;
 			case 3:
-				// menjanje_lige(&s);
+				menjanje_lige(&s);
 				break;
 			case 4:
 				// dodaj_fudbalera(&s);
@@ -49,6 +49,8 @@ int main(int argc, char** argv)
 				printf("Pogresna opcija\n");
 				break;
 		}
+
+		printf("\n");
 	}
 
 	mysql_close(s.connection);
