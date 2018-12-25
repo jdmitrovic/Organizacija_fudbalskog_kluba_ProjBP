@@ -87,3 +87,55 @@ void menjanje_lige(MySqlStruct* s)
 	free(liga);
 	free(klub);
 }
+
+void dodaj_fudbalera(MySqlStruct* s)
+{
+	int max_len = 64;
+	char ime[max_len], prezime[max_len], nacionalnost[max_len], pozicija[max_len], lateralnost[max_len];
+	int godina_rodjenja, plata;
+
+	printf("Unesite ime i prezime fudbalera koga zelite da dodate u bazu:\n");
+	scanf("%s%s", ime, prezime);
+
+	printf("Unesite godinu rodjenja:\n");
+	scanf("%d", &godina_rodjenja);
+
+	printf("Unesite platu:\n");
+	scanf("%d", &plata);
+
+	printf("Unesite nacionalnost:\n");
+	scanf("%s", nacionalnost);
+
+	printf("Unesite lateralnost (desnonog ili levonog):\n");
+	scanf("%s", lateralnost);
+
+	printf("Unesite poziciju:\n");
+	scanf("%s", pozicija);
+
+	sprintf(s->query, "insert into Osoblje(ime, prezime, godina_rodjenja, plata, nacionalnost) "
+					  "values ('%s', '%s', %d, %d, '%s')", ime, prezime, godina_rodjenja, plata, nacionalnost);
+
+	if(mysql_query(s->connection, s->query) != 0)
+		exit(EXIT_FAILURE);
+
+	sprintf(s->query, "select last_insert_id()");
+
+	if(mysql_query(s->connection, s->query) != 0)
+		exit(EXIT_FAILURE);
+
+	s->result = mysql_use_result(s->connection);
+	s->row = mysql_fetch_row(s->result);
+	int id = atoi(s->row[0]);
+
+	mysql_free_result(s->result);
+
+	sprintf(s->query, "insert into Fudbaler(Osoblje_id_osoblja, pozicija, lateralnost) "
+					  "values (%d, '%s', '%s')", id, pozicija, lateralnost);
+
+	puts(s->query);
+
+	if(mysql_query(s->connection, s->query) != 0){
+		printf("failure\n");
+		exit(EXIT_FAILURE);
+	}
+}

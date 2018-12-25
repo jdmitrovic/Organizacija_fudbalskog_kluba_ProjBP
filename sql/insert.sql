@@ -67,3 +67,9 @@ insert into Osoblje(id_osoblja, ime, prezime, godina_rodjenja, plata, nacionalno
 -- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
 -- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
 -- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
+
+insert into Fudbaler(Osoblje_id_osoblja, pozicija, lateralnost) values
+(1, "RB", "desnonog"),
+(2, "GK", "desnonog"),
+(3, "CB", "desnonog"),
+(4, "LB", "desnonog");

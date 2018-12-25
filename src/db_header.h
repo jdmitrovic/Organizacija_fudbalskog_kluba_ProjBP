@@ -16,5 +16,6 @@ typedef struct {
 void svi_klubovi(MySqlStruct* s);
 void sve_filijale(MySqlStruct* s);
 void menjanje_lige(MySqlStruct* s);
+void dodaj_fudbalera(MySqlStruct* s);
 
 #endif

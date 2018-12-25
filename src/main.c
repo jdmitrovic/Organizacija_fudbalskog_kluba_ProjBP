@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 				menjanje_lige(&s);
 				break;
 			case 4:
-				// dodaj_fudbalera(&s);
+				dodaj_fudbalera(&s);
 				break;
 			case 5:
 				// dodaj_sezonu_fudbalera(&s);
