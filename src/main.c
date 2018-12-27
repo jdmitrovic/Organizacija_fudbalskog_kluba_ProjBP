@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "db_header.h"
 
-int main(int argc, char** argv)
+int main()
 {
 	MySqlStruct s;
 	s.connection = mysql_init(NULL);
@@ -13,13 +13,14 @@ int main(int argc, char** argv)
 
 	int running_status = 1;
 	while(running_status) {
-		printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n", 
+		printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n", 
 			"Izaberite opciju:",
 			"1. Ispisi sve klubove u datoj ligi",
 			"2. Ispisi sve filijalne odnose",
 			"3. Promovisi/relegiraj klub",
 			"4. Dodaj novog fudbalera u bazu",
 			"5. Dodaj novu sezonu fudbalera",
+			"6. Ispisi sve fudbalere koji nastupaju u jednoj sezoni",
 			"0. Izadji iz programa" 
 		);
 
@@ -40,7 +41,10 @@ int main(int argc, char** argv)
 				dodaj_fudbalera(&s);
 				break;
 			case 5:
-				// dodaj_sezonu_fudbalera(&s);
+				dodaj_sezonu_fudbalera(&s);
+				break;
+			case 6:
+				svi_fudbaleri(&s);
 				break;
 			case 0:
 				running_status = 0;

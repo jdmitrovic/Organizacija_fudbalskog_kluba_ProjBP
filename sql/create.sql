@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `org_klub`.`Nastupa` (
   `Fudbaler_Osoblje_id_osoblja` INT NOT NULL,
   `Tim_vrsta_tima` VARCHAR(45) NOT NULL,
   `Tim_Fudbalski_klub_id_kluba` INT NOT NULL,
-  PRIMARY KEY (`Fudbaler_Osoblje_id_osoblja`, `Tim_vrsta_tima`, `Tim_Fudbalski_klub_id_kluba`),
+  PRIMARY KEY (`Fudbaler_Osoblje_id_osoblja`, `Tim_vrsta_tima`, `Tim_Fudbalski_klub_id_kluba`, `sezona`),
   INDEX `fk_Nastupao_Tim1_idx` (`Tim_vrsta_tima` ASC, `Tim_Fudbalski_klub_id_kluba` ASC),
   CONSTRAINT `fk_Nastupao_Fudbaler1`
     FOREIGN KEY (`Fudbaler_Osoblje_id_osoblja`)
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `org_klub`.`Trenira` (
   `Menadzer_Osoblje_id_osoblja` INT NOT NULL,
   `Tim_vrsta_tima` VARCHAR(45) NOT NULL,
   `Tim_Fudbalski_klub_id_kluba` INT NOT NULL,
-  PRIMARY KEY (`Menadzer_Osoblje_id_osoblja`, `Tim_vrsta_tima`, `Tim_Fudbalski_klub_id_kluba`),
+  PRIMARY KEY (`Menadzer_Osoblje_id_osoblja`, `Tim_vrsta_tima`, `Tim_Fudbalski_klub_id_kluba`, `sezona`),
   INDEX `fk_Trenira_Tim1_idx` (`Tim_vrsta_tima` ASC, `Tim_Fudbalski_klub_id_kluba` ASC),
   CONSTRAINT `fk_Trenira_Menadzer1`
     FOREIGN KEY (`Menadzer_Osoblje_id_osoblja`)

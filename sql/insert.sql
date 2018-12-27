@@ -22,8 +22,8 @@ insert into Stadion(id_stadiona, ime_stadiona, adresa, kapacitet) values
 
 insert into Predsednik(id_predsednika, ime, prezime) values
 (1, "Svetozar", "Mijailovic"),
-(2, "Milorad", "Vucelic"),
-(3, "Jovan", "Jovanovic"),
+(2, "Jovan", "Jovanovic"),
+(3, "Milorad", "Vucelic"),
 (4, "Marko", "Boskovic"),
 (5, "Ivan", "Popovic"),
 (6, "Zoran", "Markovic"),
@@ -60,16 +60,87 @@ insert into Osoblje(id_osoblja, ime, prezime, godina_rodjenja, plata, nacionalno
 (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
 (2, "Milan", "Borjan", 1987, 13000, "Kanada"),
 (3, "Svetozar", "Markovic", 2000, 4000, "Srbija"),
-(4, "Zlatan", "Sehovic", 2000, 3000, "Srbija");
--- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
--- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
--- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
--- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
--- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
--- (1, "Marko", "Gobeljic", 1992, 10000, "Srbija"),
+(4, "Zlatan", "Sehovic", 2000, 3000, "Srbija"),
+(5, "Radovan", "Pankov", 1995, 2000, "Srbija"),
+(6, "Ryota", "Noma", 1991, 2500, "Japan"),
+(7, "Nemanja", "Stevanovic", 1992, 5000, "Srbija"),
+(8, "Marko", "Docic", 1993, 7000, "Srbija"),
+(9, "Aleksa", "Vukanovic", 1992, 10000, "Srbija"),
+(10, "Ibrahima", "Ndiaye", 1994, 10000, "Senegal"),
+(11, "Vladan", "Milojevic", 1977, 3500, "Srbija"),
+(12, "Nenad", "Lalatovic", 1980, 3500, "Srbija"),
+(13, "Zoran", "Mirkovic", 1975, 3500, "Srbija"),
+(14, "Milorad", "Kosanovic", 1960, 3500, "Srbija"),
+(15, "Simo", "Krunic", 1967, 3500, "Srbija");
 
 insert into Fudbaler(Osoblje_id_osoblja, pozicija, lateralnost) values
 (1, "RB", "desnonog"),
 (2, "GK", "desnonog"),
 (3, "CB", "desnonog"),
-(4, "LB", "desnonog");
+(4, "LB", "desnonog"),
+(5, "CB", "desnonog"),
+(6, "CAM", "levonog"),
+(7, "GK", "desnonog"),
+(8, "CDM", "desnonog"),
+(9, "LW", "levonog"),
+(10, "RW", "desnonog");
+
+insert into Tim(Fudbalski_klub_id_kluba, vrsta_tima) values
+(1, "prvotimci"),
+(1, "rezerve"),
+(1, "U18"),
+(2, "prvotimci"),
+(2, "rezerve"),
+(2, "U18"),
+(3, "prvotimci"),
+(3, "rezerve"),
+(3, "U18"),
+(4, "prvotimci"),
+(4, "rezerve"),
+(4, "U18"),
+(5, "prvotimci"),
+(5, "rezerve"),
+(5, "U18"),
+(6, "prvotimci"),
+(6, "rezerve"),
+(6, "U18"),
+(7, "prvotimci"),
+(7, "rezerve"),
+(7, "U18"),
+(8, "prvotimci"),
+(8, "rezerve"),
+(8, "U18"),
+(17, "prvotimci"),
+(17, "rezerve"),
+(17, "U18"),
+(18, "prvotimci"),
+(18, "rezerve"),
+(18, "U18");
+
+insert into Nastupa(Fudbaler_Osoblje_id_osoblja, Tim_vrsta_tima, Tim_Fudbalski_klub_id_kluba, sezona, broj_dresa, broj_nastupa) values
+(1, "prvotimci", 1, 2018, 77, 50),
+(2, "prvotimci", 1, 2018, 82, 55),
+(3, "prvotimci", 3, 2018, 15, 20),
+(5, "prvotimci", 2, 2018, 5, 55),
+(6, "prvotimci", 2, 2018, 12, 20),
+(7, "prvotimci", 4, 2018, 1, 50),
+(8, "prvotimci", 4, 2018, 8, 55),
+(10, "prvotimci", 5, 2018, 72, 20),
+(4, "U18", 3, 2018, 17, 22),
+(9, "prvotimci", 5, 2017, 17, 20),
+(1, "prvotimci", 1, 2017, 77, 50),
+(2, "prvotimci", 1, 2017, 82, 55);
+
+insert into Menadzer(Osoblje_id_osoblja, kvalifikacije) values
+(11, "Continental Pro"),
+(12, "Continental Pro"),
+(13, "Continental Pro"),
+(14, "Continental Pro"),
+(15, "Continental Pro");
+
+insert into Trenira(Menadzer_Osoblje_id_osoblja, Tim_vrsta_tima, Tim_Fudbalski_klub_id_kluba, sezona) values
+(11, "prvotimci", 1, 2018),
+(12, "prvotimci", 2, 2018),
+(13, "prvotimci", 3, 2018),
+(14, "prvotimci", 1, 2018),
+(15, "prvotimci", 4, 2018);

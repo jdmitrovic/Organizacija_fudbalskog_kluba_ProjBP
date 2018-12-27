@@ -2,7 +2,7 @@ DIR	= Organizacija_fudbalskog_kluba_ProjBP
 CC = gcc
 PROGS	= src/main.c src/db_functions.c
 OUTPUT = org_fudbalskog_kluba
-CFLAGS	= -g -Wall `mysql_config --cflags --libs`
+CFLAGS	= -g -Wall -Wextra `mysql_config --cflags --libs`
 
 .PHONY: all create trigger insert beauty dist progs
 

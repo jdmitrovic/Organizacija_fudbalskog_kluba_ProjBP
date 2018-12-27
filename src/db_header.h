@@ -17,5 +17,9 @@ void svi_klubovi(MySqlStruct* s);
 void sve_filijale(MySqlStruct* s);
 void menjanje_lige(MySqlStruct* s);
 void dodaj_fudbalera(MySqlStruct* s);
+void dodaj_sezonu_fudbalera(MySqlStruct* s);
+void svi_fudbaleri(MySqlStruct* s);
+
+void error_fatal(char *format, ...);
 
 #endif

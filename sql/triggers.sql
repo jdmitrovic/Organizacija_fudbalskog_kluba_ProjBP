@@ -65,10 +65,11 @@ begin
 end $$
 
 drop trigger if exists bi_Nastupa $$
-create trigger bi_Nastupa before update on Nastupa
+create trigger bi_Nastupa before insert on Nastupa
 for each row
 begin
-	if(exists(select * from Nastupa n 
+	if(exists(
+		select * from Nastupa n 
 		where n.Fudbaler_Osoblje_id_osoblja = new.Fudbaler_Osoblje_id_osoblja
 		and n.sezona = new.sezona)
 	)
@@ -77,26 +78,30 @@ begin
 	end if;
 
 	if(exists(select * from Nastupa n 
-		where n.Tim_Fudbalski_klub_id_kluba = new.Tim_Fudbalski_klub_id_kluba
-		and n.broj_dresa = new.broj_dresa
-		and n.sezona = new.sezona)
+			  where n.Tim_Fudbalski_klub_id_kluba = new.Tim_Fudbalski_klub_id_kluba
+			  and n.broj_dresa = new.broj_dresa
+			  and n.sezona = new.sezona
+			  and n.Tim_vrsta_tima like new.Tim_vrsta_tima)
 	)
 	then
 		set new.broj_dresa = (
-			select n1.broj_dresa+1 
+			select n1.broj_dresa + 1 
 			from Nastupa n1
-			where n1.sezona = new.sezona 
+			where n1.sezona = new.sezona
+			and n1.Tim_Fudbalski_klub_id_kluba = new.Tim_Fudbalski_klub_id_kluba
+			and n1.Tim_vrsta_tima like new.Tim_vrsta_tima
 			and not exists(
 				select * from Nastupa n2 
-				where n1.broj_dresa = n2.broj_dresa + 1 
+				where n2.broj_dresa = n1.broj_dresa + 1 
 				and n1.Tim_Fudbalski_klub_id_kluba = n2.Tim_Fudbalski_klub_id_kluba
 				and n1.sezona = n2.sezona
+				and n1.Tim_vrsta_tima = n2.Tim_vrsta_tima
 			)
 			order by n1.broj_dresa
 			limit 1
 		);
 
-		if(new.broj_dresa = 0 || new.broj_dresa > 99)
+		if(new.broj_dresa = 0 or new.broj_dresa > 99)
 		then
 			SIGNAL SQLSTATE '45000' SET message_text = 'Greska: igrac ima maksimalno broj 99!';
 		end if;
