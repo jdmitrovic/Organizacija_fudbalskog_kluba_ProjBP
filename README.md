@@ -10,13 +10,13 @@ Fudbalski klub je jedinstveno određen ID-em. Pored toga, u opisu kluba stoje i 
 
 Fudbalski klubovi mogu imati filijale - druge fudbalske klubove koji ne nastupaju u istoj ligi kao i njihov matični klub.
 
-Svaki klub ima više timova koji nastupaju za taj klub - A tim, U18, Rezervni tim, i sl. Oni su jedinstveno određeni klubom i vrstom tima. Timovi imaju fudbalere koji za njega nastupaju, kao i menadzera koji trenira taj tim.
+Svaki klub ima više timova koji nastupaju za taj klub - prvi tim, U18, Rezervni tim, i sl. Oni su jedinstveno određeni klubom i vrstom tima. Timovi imaju fudbalere koji za njega nastupaju, kao i menadžera koji trenira taj tim.
 
-Osoblje je jedistveno određeno svojim identifikacionim brojem, ali se čuvaju informacije o imenu, prezimenu, godini rođenja, plati i nacionalnosti. Postoje dve podvrste osoblja: fudbaleri i menadzeri.
+Osoblje je jedistveno određeno svojim identifikacionim brojem, ali se čuvaju informacije i o imenu, prezimenu, godini rođenja, plati i nacionalnosti. Postoje dve podvrste osoblja: fudbaleri i menadžeri.
 
 Fudbaleri se odlikuju svojom pozicijom i lateralnošću (odnosno, ovaj atribut se koristi za navođenje dominantne noge). Za menadžere se navode i njihove kvalifikacije.
 
-Fudbaleri nastupaju za jedan fudbalski klub u jednoj sezoni i nosi jedistven broj dresa u tom klubu za tu sezonu.
+Fudbaleri nastupaju za jedan fudbalski klub u jednoj sezoni i nose jedistven broj dresa u tom klubu za tu sezonu.
 
 ## Uslovi
 
